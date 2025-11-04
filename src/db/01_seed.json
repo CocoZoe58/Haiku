@@ -1,0 +1,14 @@
+{
+  "users": [
+    { "id": 1, "name": "Zoé" },
+    { "id": 2, "name": "Choco" }
+  ],
+  "haikus": [
+    { "id": 1, "title": "test", "text": "teste", "author_id": 2, "icon": "🌙" },
+    { "id": 2, "title": "Kobayashi Issa", "text": "Mon gîte au printemps,Parce qu'il n'y a rien,De rien je ne manque.", "author_id": 2, "icon": "🌸" }
+  ],
+  "comments": [
+    { "id": 1, "haiku_id": 4, "author_id": 7, "text": "J'adore ce que tu as écrit" },
+    { "id": 2, "haiku_id": 4, "author_id": 8, "text": "Je confirme avec toi" }
+  ]
+}

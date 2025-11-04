@@ -4,18 +4,21 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "db:push": "npx drizzle-kit push",
     "db:generate": "npx drizzle-kit generate",
     "db:migrate": "npx drizzle-kit migrate",
-    "db:studio": "npx drizzle-kit studio"
+    "db:migrate:prod": "cross-env NODE_ENV=\"prod\" npx drizzle-kit migrate",
+    "db:studio": "npx drizzle-kit studio",
+    "db:seed": "node ./src/db/seed.js",
+    "db:seed:prod": "cross-env NODE_ENV=\"prod\" node ./src/db/seed.js"
   },
   "dependencies": {
     "@libsql/client": "^0.15.15",
     "dotenv": "^17.2.2",
-    "drizzle-orm": "^0.44.5",
+    "drizzle-orm": "^0.44.7",
     "lucide-react": "^0.544.0",
     "next": "15.5.3",
     "react": "19.1.0",
@@ -23,6 +26,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "cross-env": "^10.1.0",
     "drizzle-kit": "^0.31.4",
     "tailwindcss": "^4"
   }
