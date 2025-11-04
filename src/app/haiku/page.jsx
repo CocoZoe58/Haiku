@@ -4,7 +4,18 @@ import { getAllHaikus } from '@/app/_actions/haiku';
 import Link from 'next/link';
 
 export default async function HaikuListPage() {
-  const haikus = await getAllHaikus();
+  let haikus = [];
+  let error = null; // Variable pour stocker une erreur potentielle
+
+  try {
+    // ⚠️ On tente d'appeler la fonction
+    haikus = await getAllHaikus();
+  } catch (e) {
+    // Si la fonction échoue, on attrape l'erreur
+    console.error("Échec du fetching des haïkus:", e);
+    error = "Impossible de charger les haïkus. Veuillez réessayer plus tard.";
+    haikus = []; // Assurez-vous que la liste reste vide en cas d'erreur
+  }
 
   return (
     <main className="p-5 max-w-xl mx-auto flex flex-col gap-4">
@@ -18,9 +29,17 @@ export default async function HaikuListPage() {
         </Link>
       </div>
 
-      {haikus.length === 0 ? (
+      {/* 🛑 NOUVEAU : Afficher le message d'erreur si la requête a échoué */}
+      {error && (
+        <div className="text-red-600 p-3 border border-red-300 bg-red-50 rounded">
+          {error}
+        </div>
+      )}
+
+      {haikus.length === 0 && !error ? (
         <p>Aucun haïku disponible.</p>
       ) : (
+        // Le reste de votre code reste inchangé
         <ul className="flex flex-col gap-2">
           {haikus.map((h) => (
             <li key={h.id}>
